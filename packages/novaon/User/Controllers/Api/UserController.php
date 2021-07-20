@@ -190,9 +190,11 @@ class UserController extends Controller
                 'password' => $request['password'] ? Hash::make($request['password']) : $user['password'],
             ];
             $user->update($data);
-            return ResponseBuilder::success($user, ApiCode::SUCCESS);
-
+        }else{
+            $user = ['message' => "Bạn nhập sai mật khẩu cũ!"];
         }
+        return ResponseBuilder::success($user, ApiCode::SUCCESS);
+
     }
 
     /**

@@ -56,6 +56,9 @@
         <el-form-item label="Mật Khẩu Cũ" prop="oldpass">
           <el-input type="password" v-model="model_edit.old_password" autocomplete="off"></el-input>
         </el-form-item>
+        <el-form-item>
+          <p id="error-message" style="color: #ff4d51 !important;"></p>
+        </el-form-item>
         <el-form-item label="Mật Khẩu Mới" prop="password">
           <el-input type="password" v-model="model_edit.new_password" autocomplete="off"></el-input>
         </el-form-item>
@@ -158,12 +161,16 @@ export default {
 
       this.model_edit.password = this.model_edit.new_password;
       const res = await userResource.update(this.model_edit.id, this.model_edit);
-      this.drawer_edit = false;
-      this.fetchData();
-      toast.fire({
-        icon: 'success',
-        title: 'User has been updated',
-      })
+      if(res.data.message){
+        document.getElementById('error-message').textContent = res.data.message;
+      }else{
+        this.drawer_edit = false;
+        this.fetchData();
+        toast.fire({
+          icon: 'success',
+          title: 'Admin được update',
+        })
+      }
     },
     async deleteData(id) {
       if (confirm("Do you really want to delete?")) {
