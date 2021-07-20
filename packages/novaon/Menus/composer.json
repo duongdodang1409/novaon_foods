@@ -1,0 +1,21 @@
+{
+    "name": "novaon/Menu",
+    "description": "User Management for Caller",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Kien",
+            "email": ""
+        }
+    ],
+    "require": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Novaon\\Menus\\Provider\\MenuServiceProvider"
+            ]
+        }
+    }
+}

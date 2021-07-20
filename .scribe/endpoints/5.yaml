@@ -1,0 +1,318 @@
+name: 'Post Management'
+description: |-
+
+  APIs for managing Post
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/posts
+    metadata:
+      title: 'List Post'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters:
+      limit:
+        name: limit
+        description: 'Limit Posts of page. Ex: 20'
+        required: false
+        example: 2
+        type: integer
+      page:
+        name: page
+        description: 'Current Page'
+        required: false
+        example: 9
+        type: integer
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "success": true,
+           "code": 200,
+           "locale": "en",
+           "message": "OK",
+           "data": {
+           "current_page": 1,
+           "data": [
+               {
+               "id": 8,
+               "title": "Trương Gia Toàn",
+               "content": "<p>&ldquo;OnSales CRM ch&uacute;ng t&ocirc;i c&oacute; thể nhận biết được kh&aacute;chh&agrave;ng của m&igrave;nh qua mỗi cuộc gọi tới để ch&agrave;o hỏi 1 c&aacute;ch th&acirc;n thiện nhất.&rdquo;<\/p>",
+               "slug": "04-dieu-can-tranh-neu-doanh-nghiep-muon-tang-truong-doanh-thu",
+               "tags": null,
+               "image": "/storage/files/customer-feedback-1.png",
+               "status": 1,
+               "created_at": "2021-06-07T08:28:56.000000Z",
+               "updated_at": "2021-06-08T03:04:03.000000Z"
+               }
+           ],
+           "first_page_url": "http://localhost:8000/api/v1/posts?page=1",
+           "from": 1,
+           "last_page": 1,
+           "last_page_url": "http://localhost:8000/api/v1/posts?page=1",
+           "next_page_url": null,
+           "path": "http://localhost:8000/api/v1/posts",
+           "per_page": 15,
+           "prev_page_url": null,
+           "to": 1,
+           "total": 1
+           }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/posts
+    metadata:
+      title: 'Create new Post'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Title of Post'
+        required: true
+        example: et
+        type: string
+      content:
+        name: content
+        description: 'Content of Post'
+        required: true
+        example: et
+        type: string
+      image:
+        name: image
+        description: 'Image avatar of Post'
+        required: false
+        example: dicta
+        type: string
+      brief:
+        name: brief
+        description: 'Must not be greater than 255 characters.'
+        required: true
+        example: kvuljgrhzcifqekgdboiennmhoaifmsasdktjrimsduqonddsemdcffqqpkpjigwzsobuqlltyee
+        type: string
+      slug:
+        name: slug
+        description: 'Slug of Post'
+        required: true
+        example: aut
+        type: string
+      tags:
+        name: tags
+        description: 'Tags of Post'
+        required: false
+        example: illo
+        type: string
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "item": {
+          "id": 8,
+                   "title": "Trương Gia Toàn",
+                   "content": "<p>&ldquo;OnSales CRM ch&uacute;ng t&ocirc;i c&oacute; thể nhận biết được kh&aacute;chh&agrave;ng của m&igrave;nh qua mỗi cuộc gọi tới để ch&agrave;o hỏi 1 c&aacute;ch th&acirc;n thiện nhất.&rdquo;<\/p>",
+                   "slug": "04-dieu-can-tranh-neu-doanh-nghiep-muon-tang-truong-doanh-thu",
+                   "brief": "Những điều cần tránh nếu muốn tăng trưởng doanh thu của doanh nghiệp là....",
+                   "tags": null,
+                   "image": "/storage/files/customer-feedback-1.png",
+                   "status": 1,
+                   "created_at": "2021-06-07T08:28:56.000000Z",
+                   "updated_at": "2021-06-08T03:04:03.000000Z"
+          }
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/posts/{id}'
+    metadata:
+      title: 'Get Post info'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Post ID. Ex: 1'
+        required: true
+        example: 15
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "success": true,
+           "code": 200,
+           "locale": "en",
+           "message": "OK",
+           "data": {
+               "item": {
+                   "id": 8,
+                   "title": "Trương Gia Toàn",
+                   "content": "<p>&ldquo;OnSales CRM ch&uacute;ng t&ocirc;i c&oacute; thể nhận biết được kh&aacute;chh&agrave;ng của m&igrave;nh qua mỗi cuộc gọi tới để ch&agrave;o hỏi 1 c&aacute;ch th&acirc;n thiện nhất.&rdquo;<\/p>",
+                   "slug": "04-dieu-can-tranh-neu-doanh-nghiep-muon-tang-truong-doanh-thu",
+                   "brief": "Những điều cần tránh nếu muốn tăng trưởng doanh thu của doanh nghiệp là....",
+                   "tags": null,
+                   "image": "/storage/files/customer-feedback-1.png",
+                   "status": 1,
+                   "created_at": "2021-06-07T08:28:56.000000Z",
+                   "updated_at": "2021-06-08T03:04:03.000000Z"
+               }
+           }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/posts/{id}'
+    metadata:
+      title: 'Update Post'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Post ID. Ex: 1'
+        required: true
+        example: 7
+        type: integer
+    queryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Title of Post'
+        required: true
+        example: iusto
+        type: string
+      content:
+        name: content
+        description: 'Content of Post'
+        required: true
+        example: exercitationem
+        type: string
+      image:
+        name: image
+        description: 'Image avatar of Post'
+        required: false
+        example: aut
+        type: string
+      brief:
+        name: brief
+        description: 'Must not be greater than 255 characters.'
+        required: false
+        example: kbluncmchougbieiiakaaxtiogjfdvvquwhjbgtbkwgqsoiqwrsudrarmdiblmclbhalkiwwlpzppnqfiwfadvplrwhtzxpfysxsqfbcbgrsuwrvuzshujobuouecmnsestuthlhbmxsyqjxxnhmlnktweidmjxscxuypzaectpmivuuoxivomw
+        type: string
+      slug:
+        name: slug
+        description: 'Slug of Post'
+        required: true
+        example: non
+        type: string
+      tags:
+        name: tags
+        description: 'Tags of Post'
+        required: false
+        example: omnis
+        type: string
+      user_id:
+        name: user_id
+        description: ''
+        required: true
+        example: 334801.016208
+        type: number
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "item": {
+          "id": 8,
+                   "title": "Trương Gia Toàn",
+                   "content": "<p>&ldquo;OnSales CRM ch&uacute;ng t&ocirc;i c&oacute; thể nhận biết được kh&aacute;chh&agrave;ng của m&igrave;nh qua mỗi cuộc gọi tới để ch&agrave;o hỏi 1 c&aacute;ch th&acirc;n thiện nhất.&rdquo;<\/p>",
+                   "slug": "04-dieu-can-tranh-neu-doanh-nghiep-muon-tang-truong-doanh-thu",
+                   "brief": "Những điều cần tránh nếu muốn tăng trưởng doanh thu của doanh nghiệp là....",
+                   "tags": null,
+                   "image": "/storage/files/customer-feedback-1.png",
+                   "status": 1,
+                   "created_at": "2021-06-07T08:28:56.000000Z",
+                   "updated_at": "2021-06-08T03:04:03.000000Z"
+          }
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/posts/{id}'
+    metadata:
+      title: 'Delete Post'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Post ID. Ex: 1'
+        required: true
+        example: 8
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": { }
+          }
+        headers: []
+        description: '200'
+    responseFields: []

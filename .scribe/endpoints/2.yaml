@@ -1,0 +1,283 @@
+name: 'Feature Pack Management'
+description: |-
+
+  APIs for managing Feature Pack
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/feature-packs
+    metadata:
+      title: 'List Feature Pack'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters:
+      limit:
+        name: limit
+        description: 'Limit Feature Pack of page. Ex: 20'
+        required: false
+        example: 13
+        type: integer
+      page:
+        name: page
+        description: 'Current Page'
+        required: false
+        example: 12
+        type: integer
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "success": true,
+           "code": 200,
+           "locale": "en",
+           "message": "OK",
+           "data": {
+           "current_page": 1,
+           "data": [
+               {
+               "id": 1,
+               "title": "Cơ Bản",
+               "price": 999000,
+               "sale_price": 499000,
+               "status": 1,
+               "created_at": null,
+               "updated_at": "2021-06-07T11:11:01.000000Z"
+               }
+           ],
+           "first_page_url": "http://localhost:8000/api/v1/feature-packs?page=1",
+           "from": 1,
+           "last_page": 1,
+           "last_page_url": "http://localhost:8000/api/v1/feature-packs?page=1",
+           "next_page_url": null,
+           "path": "http://localhost:8000/api/v1/feature-packs",
+           "per_page": 15,
+           "prev_page_url": null,
+           "to": 1,
+           "total": 1
+           }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/feature-packs
+    metadata:
+      title: 'Create new Feature Pack'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Title of Feature Pack'
+        required: true
+        example: inventore
+        type: string
+      price:
+        name: price
+        description: 'Price of Feature Pack'
+        required: true
+        example: 18
+        type: integer
+      sale_price:
+        name: sale_price
+        description: 'Sale Price of Feature Pack'
+        required: false
+        example: 20
+        type: integer
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "item": {
+          "id": 1,
+          "title": "Cơ Bản",
+          "price": 999000,
+          "sale_price": 499000,
+          "status": 1,
+          "created_at": null,
+          "updated_at": "2021-06-07T11:11:01.000000Z"
+          }
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/feature-packs/{feature_pack}'
+    metadata:
+      title: 'Get Feature Pack info'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      feature_pack:
+        name: feature_pack
+        description: ''
+        required: true
+        example: 5
+        type: integer
+      id:
+        name: id
+        description: 'Feature Pack ID. Ex: 1'
+        required: true
+        example: 11
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "success": true,
+           "code": 200,
+           "locale": "en",
+           "message": "OK",
+           "data": {
+               "item": {
+                   "id": 1,
+                   "title": "Cơ Bản",
+                   "price": 999000,
+                   "sale_price": 499000,
+                   "status": 1,
+                   "created_at": null,
+                   "updated_at": "2021-06-07T11:11:01.000000Z"
+               }
+           }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/feature-packs/{feature_pack}'
+    metadata:
+      title: 'Update Feature Pack'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      feature_pack:
+        name: feature_pack
+        description: ''
+        required: true
+        example: voluptatem
+        type: string
+      id:
+        name: id
+        description: 'Feature Pack ID. Ex: 1'
+        required: true
+        example: 5
+        type: integer
+    queryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Title of Feature Pack'
+        required: false
+        example: vel
+        type: string
+      price:
+        name: price
+        description: 'Price of Feature Pack'
+        required: false
+        example: 18
+        type: integer
+      sale_price:
+        name: sale_price
+        description: 'Sale Price of Feature Pack'
+        required: false
+        example: 16
+        type: integer
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "item": {
+          "id": 1,
+          "title": "Cơ Bản",
+          "price": 999000,
+          "sale_price": 499000,
+          "status": 1,
+          "created_at": null,
+          "updated_at": "2021-06-07T11:11:01.000000Z"
+          }
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/feature-packs/{feature_pack}'
+    metadata:
+      title: 'Delete Feature Pack'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      feature_pack:
+        name: feature_pack
+        description: ''
+        required: true
+        example: 9
+        type: integer
+      id:
+        name: id
+        description: 'Feature Pack ID. Ex: 1'
+        required: true
+        example: 13
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": { }
+          }
+        headers: []
+        description: '200'
+    responseFields: []

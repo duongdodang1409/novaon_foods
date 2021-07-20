@@ -1,0 +1,21 @@
+{
+    "name": "novaon/Product",
+    "description": "User Management for Caller",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Duong",
+            "email": ""
+        }
+    ],
+    "require": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Novaon\\Product\\Provider\\ProductServiceProvider"
+            ]
+        }
+    }
+}

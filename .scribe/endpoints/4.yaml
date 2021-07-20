@@ -1,0 +1,281 @@
+name: 'Menu management'
+description: |-
+
+  APIs for managing menu
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/menus
+    metadata:
+      title: 'List Menus'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters:
+      limit:
+        name: limit
+        description: 'Limit Menus of page. Ex: 20'
+        required: false
+        example: 8
+        type: integer
+      page:
+        name: page
+        description: 'Current Page'
+        required: false
+        example: 6
+        type: integer
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "current_page": 1,
+          "data": [
+          {
+          "id": 1,
+          "name": "OnSales",
+          "parent_id": 10,
+          "slug": "hello-onsales",
+          "link": /,
+          "created_at": "2020-10-01T10:27:30.000000Z",
+          "updated_at": "2020-10-01T10:27:30.000000Z"
+          }
+          ],
+          "first_page_url": "http://localhost:8000/api/v1/menus?page=1",
+          "from": 1,
+          "last_page": 1,
+          "last_page_url": "http://localhost:8000/api/v1/menus?page=1",
+          "path": "http://localhost:8000/api/v1/menus",
+          "per_page": 20,
+          "prev_page_url": null,
+          "to": 1,
+          "total": 1
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/menus
+    metadata:
+      title: 'Create new Menu'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: Name
+        required: false
+        example: nisi
+        type: string
+      parent_id:
+        name: parent_id
+        description: 'Parent Id.  first Menu has parent Id = 0'
+        required: false
+        example: voluptas
+        type: string
+      link:
+        name: link
+        description: Link
+        required: false
+        example: nihil
+        type: string
+      level:
+        name: level
+        description: 'Level Menu . Level Menu should be less than 4'
+        required: false
+        example: 18
+        type: integer
+      slug:
+        name: slug
+        description: Slug
+        required: false
+        example: unde
+        type: string
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "id": 2,
+          "name": "blog",
+          "parent_id": 1 ,
+          "slug": "blog",
+          "link": /,
+          "created_at": "2020-10-01T10:27:30.000000Z",
+          "updated_at": "2020-10-01T10:27:30.000000Z"
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/menus/{id}'
+    metadata:
+      title: 'Get Menu info'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Menu ID. Ex: 1'
+        required: true
+        example: 2
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "current_page": 1,
+          "data": [
+          {
+          "id": 1,
+          "name": "San Pham",
+          "parent_id": 0,
+          "slug": "san-pham",
+          "link": /,
+          "created_at": "2020-10-01T10:27:30.000000Z",
+          "updated_at": "2020-10-01T10:27:30.000000Z"
+          }
+          ],
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/menus/{id}'
+    metadata:
+      title: 'Update Menu'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Menu ID. Ex: 1'
+        required: true
+        example: 3
+        type: integer
+    queryParameters: []
+    bodyParameters:
+      name:
+        name: name
+        description: Name
+        required: false
+        example: explicabo
+        type: string
+      level:
+        name: level
+        description: 'Level Menu . Level Menu should be less than 4'
+        required: false
+        example: 17
+        type: integer
+      parent_id:
+        name: parent_id
+        description: 'Parent Id .First Menu has Parent Id = 0'
+        required: false
+        example: 5
+        type: integer
+      link:
+        name: link
+        description: Link
+        required: false
+        example: eos
+        type: string
+      slug:
+        name: slug
+        description: Slug
+        required: false
+        example: repellendus
+        type: string
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "item": []
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/menus/{id}'
+    metadata:
+      title: 'Delete Menu'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Item ID. Ex: 1'
+        required: true
+        example: 4
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": { }
+          }
+        headers: []
+        description: '200'
+    responseFields: []

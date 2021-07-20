@@ -1,0 +1,269 @@
+name: 'Slide Management'
+description: |-
+
+  APIs for managing Slide
+endpoints:
+  -
+    httpMethods:
+      - GET
+    uri: api/v1/slides
+    metadata:
+      title: 'List Slide'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters:
+      limit:
+        name: limit
+        description: 'Limit Slides of page. Ex: 20'
+        required: false
+        example: 6
+        type: integer
+      page:
+        name: page
+        description: 'Current Page'
+        required: false
+        example: 5
+        type: integer
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+           "success": true,
+           "code": 200,
+           "locale": "en",
+           "message": "OK",
+           "data": {
+               "current_page": 1,
+               "data": [
+               {
+                   "id": 8,
+                   "title": "Trương Gia Toàn",
+                   "content": "<p>&ldquo;Nhờ kết nối OnSales Caller với hệ thống OnSales CRM ch&uacute;ng t&ocirc;i c&oacute; thể nhận biết được kh&aacute;ch h&agrave;ng của m&igrave;nh qua mỗi cuộc gọi tới để ch&agrave;o hỏi 1 c&aacute;ch th&acirc;n thiện nhất.&rdquo;<\/p>",
+                   "image": "/storage/files/customer-feedback-1.png",
+                   "type": slide,
+                   "status": 1,
+                   "created_at": "2021-06-07T08:28:56.000000Z",
+                   "updated_at": "2021-06-08T03:04:03.000000Z"
+               }
+               ],
+               "first_page_url": "http://localhost:8000/api/v1/slides?page=1",
+               "from": 1,
+               "last_page": 1,
+               "last_page_url": "http://localhost:8000/api/v1/slides?page=1",
+               "next_page_url": null,
+               "path": "http://localhost:8000/api/v1/slides",
+               "per_page": 15,
+               "prev_page_url": null,
+               "to": 1,
+               "total": 1
+           }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - POST
+    uri: api/v1/slides
+    metadata:
+      title: 'Create new Slide'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters: []
+    queryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Title Slide'
+        required: false
+        example: pariatur
+        type: string
+      content:
+        name: content
+        description: 'Content Slide'
+        required: false
+        example: error
+        type: string
+      image:
+        name: image
+        description: 'Path of Image'
+        required: false
+        example: consequatur
+        type: string
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "item": {
+          "id": 8,
+          "title": "Trương Gia Toàn",
+          "content": "<p>&ldquo;Nhờ kết nối OnSales Caller với hệ thống OnSales CRM ch&uacute;ng t&ocirc;i c&oacute; thể nhận biết được kh&aacute;ch h&agrave;ng của m&igrave;nh qua mỗi cuộc gọi tới để ch&agrave;o hỏi 1 c&aacute;ch th&acirc;n thiện nhất.&rdquo;</p>",
+          "image": "/storage/files/customer-feedback-1.png",
+          "type": "slide",
+          "status": 1,
+          "created_at": "2021-06-07T08:28:56.000000Z",
+          "updated_at": "2021-06-08T03:04:03.000000Z"
+          }
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - GET
+    uri: 'api/v1/slides/{id}'
+    metadata:
+      title: 'Get Slide info'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Slide ID. Ex: 1'
+        required: true
+        example: 13
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "item": {
+          "id": 8,
+          "title": "Trương Gia Toàn",
+          "content": "<p>&ldquo;Nhờ kết nối OnSales Caller với hệ thống OnSales CRM ch&uacute;ng t&ocirc;i c&oacute; thể nhận biết được kh&aacute;ch h&agrave;ng của m&igrave;nh qua mỗi cuộc gọi tới để ch&agrave;o hỏi 1 c&aacute;ch th&acirc;n thiện nhất.&rdquo;</p>",
+          "image": "/storage/files/customer-feedback-1.png",
+          "type": "slide",
+          "status": 1,
+          "created_at": "2021-06-07T08:28:56.000000Z",
+          "updated_at": "2021-06-08T03:04:03.000000Z"
+          }
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - PUT
+      - PATCH
+    uri: 'api/v1/slides/{id}'
+    metadata:
+      title: 'Update Slide'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Slide ID. Ex: 1'
+        required: false
+        example: 16
+        type: integer
+    queryParameters: []
+    bodyParameters:
+      title:
+        name: title
+        description: 'Title Slide'
+        required: false
+        example: molestias
+        type: string
+      content:
+        name: content
+        description: 'Content Slide'
+        required: false
+        example: culpa
+        type: string
+      image:
+        name: image
+        description: 'Path of Image'
+        required: false
+        example: doloremque
+        type: string
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": {
+          "item": {
+          "id": 8,
+          "title": "Trương Gia Toàn",
+          "content": "<p>&ldquo;Nhờ kết nối OnSales Caller với hệ thống OnSales CRM ch&uacute;ng t&ocirc;i c&oacute; thể nhận biết được kh&aacute;ch h&agrave;ng của m&igrave;nh qua mỗi cuộc gọi tới để ch&agrave;o hỏi 1 c&aacute;ch th&acirc;n thiện nhất.&rdquo;</p>",
+          "image": "/storage/files/customer-feedback-1.png",
+          "type": slide,
+          "status": 1,
+          "created_at": "2021-06-07T08:28:56.000000Z",
+          "updated_at": "2021-06-08T03:04:03.000000Z"
+          }
+          }
+          }
+        headers: []
+        description: '200'
+    responseFields: []
+  -
+    httpMethods:
+      - DELETE
+    uri: 'api/v1/slides/{id}'
+    metadata:
+      title: 'Delete Slide'
+      description: ''
+      authenticated: false
+    headers:
+      Content-Type: application/json
+      Accept: application/json
+    urlParameters:
+      id:
+        name: id
+        description: 'Slide ID. Ex: 1'
+        required: true
+        example: 11
+        type: integer
+    queryParameters: []
+    bodyParameters: []
+    responses:
+      -
+        status: 200
+        content: |-
+          {
+          "success": true,
+          "code": 200,
+          "locale": "en",
+          "message": "OK",
+          "data": { }
+          }
+        headers: []
+        description: '200'
+    responseFields: []

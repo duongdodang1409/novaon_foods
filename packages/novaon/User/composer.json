@@ -1,0 +1,21 @@
+{
+    "name": "novaon/user",
+    "description": "User Management for Caller",
+    "minimum-stability": "stable",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "taitn",
+            "email": "taitn@novaon.group"
+        }
+    ],
+    "require": {
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Novaon\\User\\Providers\\UserServiceProvider"
+            ]
+        }
+    }
+}
