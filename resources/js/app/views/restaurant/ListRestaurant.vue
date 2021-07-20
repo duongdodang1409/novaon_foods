@@ -38,10 +38,10 @@
       </el-table-column>
     </el-table>
     <el-drawer
-      title="EDIT BANNER"
-      :visible.sync="drawer_edit"
-      :direction="direction"
-      size="50%">
+        title="EDIT BANNER"
+        :visible.sync="drawer_edit"
+        :direction="direction"
+        size="50%">
       <el-form ref="form" :model="restaurant_edit"  label-width="120px">
         <el-form-item label="Tên quán ăn" prop="name">
           <el-input v-model="restaurant_edit.brand"/>

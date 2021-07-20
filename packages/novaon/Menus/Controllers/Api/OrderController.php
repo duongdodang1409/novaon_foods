@@ -18,7 +18,7 @@ class OrderController extends Controller
         $from = date($request->first);
         $to = date($request->last);
         $idCustomer = $request->idCustomer;
-      //  $id = $request->customer_id;
+        $id = $request->customer_id;
         //lấy tổng số đơn 1 ngày trong backend
         if($weekday){
             $data = DB::table('orders')
@@ -30,10 +30,18 @@ class OrderController extends Controller
                 ->where(['orders.status'=>1])
                 ->get();
         }
-        //lấy lịch sử hủy đơn ,đặt đơn frontend,backend của mỗi khách hàng
+        //lấy lịch sử hủy đơn backend
+        elseif ($id){
+            $data = DB::table('orders')
+                ->join('foods', 'orders.id_food', '=', 'foods.id')
+                ->where(['orders.id_customer'=>$id])
+                ->where(['orders.status'=>0])
+                ->get();
+        }
+        //lấy lịch sử hủy đơn ,đặt đơn frontend
         else{
             $data = DB::table('orders')
-                ->selectRaw('orders.id_food,orders.id,orders.status,foods.name,orders.id_menu,orders.created_at,orders.updated_at,foods.image ,sum(orders.quantity) as quantity,sum(orders.price) as price',)
+                ->selectRaw('orders.id_food,orders.id,orders.status,foods.name,orders.id_menu,foods.image ,orders.created_at,orders.updated_at,sum(orders.quantity) as quantity,sum(orders.price) as price',)
                 ->join('foods', 'orders.id_food', '=', 'foods.id')
                 ->groupBy('orders.id_food', 'foods.name','orders.id_menu','orders.id','orders.status','foods.image','orders.created_at','orders.updated_at')
                 ->whereBetween('orders.created_at', [$from, $to])

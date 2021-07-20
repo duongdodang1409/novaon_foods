@@ -1,7 +1,6 @@
 <?php
 
 
-
 namespace Novaon\User\Controllers\Api;
 
 use App\ApiCode;
@@ -145,6 +144,7 @@ class UserController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
+            'role' => $request['role'],
         ]);
         return ResponseBuilder::success($user, ApiCode::SUCCESS);
     }

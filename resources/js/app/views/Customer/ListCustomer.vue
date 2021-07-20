@@ -171,7 +171,7 @@ export default {
             this.fetchData();
             toast.fire({
                 icon: 'success',
-                title: 'Khách hàng đã được update',
+                title: 'Customer has been updated',
             })
         },
         async deleteData(id) {

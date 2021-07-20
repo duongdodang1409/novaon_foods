@@ -27,13 +27,11 @@ class WeekdayController extends Controller
 
   public function update(Request $request, Weekday $weekday)
   {
+
       $data = $request->all();
       $weekday->update($data);
       $weekday = Weekday::find($request->id);
       $weekday->foods()->sync($request->foods);
-
-//    $weekday = Weekday::find($request->id);
-//    $weekday->foods()->sync($request->foods);
 
     return ResponseBuilder::success($weekday, ApiCode::SUCCESS);
   }

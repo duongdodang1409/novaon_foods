@@ -7,7 +7,7 @@
             v-model="array"
             :right-default-checked="array"
             :data="data"
-            :titles="['Tất cả các món', 'Menu Thứ 4']">
+            :titles="['Tất cả các món', 'Menu Thứ 5']">
         </el-transfer>
       </el-form-item>
 

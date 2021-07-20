@@ -1,5 +1,16 @@
 <?php
+/**
+ * Project: Caller_Core
+ * Package: App
+ * Author: tony
+ * Create time: 15:06 9/24/20
+ * Copyright (c) 2020 NOVAON.
+ **/
+
+
 namespace App;
+
+
 class ApiCode
 {
     public const SUCCESS = 200;

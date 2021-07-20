@@ -15,7 +15,7 @@ class HistoryController extends Controller
 
     public function index(Request $request, History $history)
     {
-        $idCustomer = $request -> idCustomer;
+        $idCustomer = $request -> customer_id;
         if($idCustomer != null){
             $data= DB::table('history')->where('id_customer', $idCustomer)->get();
         }

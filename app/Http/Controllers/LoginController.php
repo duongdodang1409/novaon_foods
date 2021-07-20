@@ -35,8 +35,13 @@ class LoginController extends Controller
             ]);
             $data= json_decode($response->getBody(), true);
             $email = $data['user']['email'];
+           // $check = "novaon";
+           // $pos = strpos($email,$check);
+            //if($pos == true) {
                 Session::put('email', $email);
-
+           // }else{
+           //     Session::put('message', "NOVAON_ID Cần đăng nhập bằng mail NOVAON");
+           // }
             return Redirect('/');
 
 
@@ -48,6 +53,7 @@ class LoginController extends Controller
     }
     public function checkUser(){
         $email = Session::get('email');
+       // $user = Customer::where('email',$email)->first();
         if($email){
             return view('order');
         }else{

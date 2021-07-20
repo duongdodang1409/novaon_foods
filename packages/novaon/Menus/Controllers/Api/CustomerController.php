@@ -26,7 +26,7 @@ class CustomerController extends Controller
         }
         elseif($from) {
             $data = DB::table('orders')
-                ->selectRaw('customers.name,customers.email,customers.id,customers.status ,customers.property ,sum(quantity) as quantity, sum(price) as price')
+                ->selectRaw('customers.name,customers.email,customers.id ,customers.status,customers.property ,sum(quantity) as quantity, sum(price) as price')
                 ->rightJoin('customers', 'orders.id_customer', '=', 'customers.id')
                 ->groupBy('customers.id', 'customers.name', 'customers.email', 'customers.property','customers.status')
                 ->where(['orders.status'=>1])

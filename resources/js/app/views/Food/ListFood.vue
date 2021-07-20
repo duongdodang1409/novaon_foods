@@ -50,10 +50,10 @@
       </el-table-column>
     </el-table>
     <el-drawer
-      title="EDIT BANNER"
-      :visible.sync="drawer_edit"
-      :direction="direction"
-      size="50%">
+        title="EDIT BANNER"
+        :visible.sync="drawer_edit"
+        :direction="direction"
+        size="50%">
       <el-form ref="form" :model="food_edit"  label-width="120px">
         <el-form-item label="Tên Món Ăn" prop="name">
           <el-input v-model="food_edit.name"/>
@@ -76,10 +76,10 @@
         <el-form-item label="Cửa Hàng" prop="restaurant_id">
           <el-select v-model="food_edit.restaurant_id" clearable placeholder="Chọn Nhà Hàng">
             <el-option
-              v-for="item in restaurants"
-              :key="item.id"
-              :label="item.brand"
-              :value="item.id"
+                v-for="item in restaurants"
+                :key="item.id"
+                :label="item.brand"
+                :value="item.id"
             >
               <template slot-scope="scope">
                 <span>{{ item.brand }}</span>
@@ -115,37 +115,37 @@ const foodResource = new Resource('v1/foods')
 
 
 export default {
-data(){
-  return {
-    url: process.env.MIX_APP_URL,
-    array: [],
-    restaurants: [],
-    weekdays:[],
-    drawer_edit: false,
-    drawer_delete: false,
-    direction: 'rtl',
-    list: null,
-    listLoading: true,
-    food: [{
-      id: '',
-      name: '',
-      price: '',
-      image:'',
-      description:'',
-      restaurant_id:'',
-      brand:'',
+  data(){
+    return {
+      url: process.env.MIX_APP_URL,
+      array: [],
+      restaurants: [],
+      weekdays:[],
+      drawer_edit: false,
+      drawer_delete: false,
+      direction: 'rtl',
+      list: null,
+      listLoading: true,
+      food: [{
+        id: '',
+        name: '',
+        price: '',
+        image:'',
+        description:'',
+        restaurant_id:'',
+        brand:'',
 
-    }],
-    food_edit:{
-      name:'',
-      price:'',
-      image:'',
-      description:'',
-      restaurant_id:'',
-      menu_id:[],
-    },
-  };
-},
+      }],
+      food_edit:{
+        name:'',
+        price:'',
+        image:'',
+        description:'',
+        restaurant_id:'',
+        menu_id:[],
+      },
+    };
+  },
   created() {
     this.fetchData();
     if (this.drawer_edit == true) this.editData();
@@ -173,7 +173,7 @@ data(){
       this.food = foods.data.items;
       this.restaurants = res.data.items;
 //       const  restaurant = await restaurantResource.get(2);
-console.log('all food', foods );
+      console.log('all food', foods );
       this.listLoading = false;
     },
     create() {
@@ -198,7 +198,7 @@ console.log('all food', foods );
       }
       console.log('List Day', this.array);
 
-     // console.log('list_day',list_day);
+      // console.log('list_day',list_day);
     },
     upload(){
       var token = this.$cookies.get('Admin-Token');
@@ -212,8 +212,8 @@ console.log('all food', foods );
       return false
     },
     async save() {
-    this.food_edit.menu_id = this.array;
-    //console.log('list menu',this.food_edit.menu_id);
+      this.food_edit.menu_id = this.array;
+      //console.log('list menu',this.food_edit.menu_id);
       const res = await foodResource.update(this.food_edit.id, this.food_edit);
       this.drawer_edit = false;
       toast.fire({

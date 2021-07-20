@@ -17,6 +17,7 @@
 
     <div id="food" >
         <example></example>
+{{--        <nav_menu></nav_menu>--}}
     </div>
 </div>
 

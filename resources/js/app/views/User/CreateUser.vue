@@ -14,7 +14,6 @@
       <el-form-item label="Confirm" prop="checkPass">
         <el-input type="password" v-model="user.checkPass" autocomplete="off"></el-input>
       </el-form-item>
-
       <el-form-item>
         <el-button type="primary" @click="validate('form')">Submit</el-button>
         <el-button @click="resetForm('form')">Reset</el-button>
@@ -41,7 +40,6 @@ export default {
       }
     };
     return {
-
       user: {
         id: '',
         name: '',

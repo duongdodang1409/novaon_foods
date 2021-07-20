@@ -22,13 +22,15 @@
     <div class="w3-display-middle w3-center">
         <span class="" style="font-size:60px;color: deeppink"><b>NOVAON-FOODS</b></span>
         <?php  $email=Session::get('email');
+        $message = Session::get('message');
         ?>
         @if(isset($email))
         <p><a href="/order" class="w3-button w3-xxlarge w3-black" style="color: deeppink">Let me see the menu</a></p>
         @endif
         @if($email == null)
             <p><a href="/login" target="_blank" class="w3-button w3-xxlarge w3-black" style="color: deeppink">
-                    Login with NOVAON_ID(@novaon) to see menu
+                    Login with NOVAON_ID to see menu
+                    {{$message}}
                 </a></p>
         @endif
     </div>

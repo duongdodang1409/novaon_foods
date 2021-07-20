@@ -22,10 +22,10 @@
       <el-form-item label="Cửa Hàng" prop="restaurant_id">
         <el-select v-model="food.restaurant_id" clearable placeholder="Chọn Nhà Hàng">
           <el-option
-            v-for="item in restaurants"
-            :key="item.id"
-            :label="item.brand"
-            :value="item.id"
+              v-for="item in restaurants"
+              :key="item.id"
+              :label="item.brand"
+              :value="item.id"
           >
             <template slot-scope="scope">
               <span>{{ item.brand }}</span>
@@ -113,7 +113,7 @@ export default {
 
       window.SetUrl = function (items) {
         console.log(items);
-         console.log(items[0].name);
+        console.log(items[0].name);
         var len = self.url.length;
         var length = items[0].url.length;
         self.food.image = items[0].url.slice(len, length);

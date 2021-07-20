@@ -3,11 +3,11 @@
     <el-form ref="form" :model="menu"  label-width="120px">
       <el-form-item prop="list_food">
         <el-transfer
-          filterable
-          v-model="array"
-          :right-default-checked="array"
-          :data="data"
-          :titles="['Tất cả các món', 'Menu Thứ 2']">
+            filterable
+            v-model="array"
+            :right-default-checked="array"
+            :data="data"
+            :titles="['Tất cả các món', 'Menu Thứ 2']">
         </el-transfer>
       </el-form-item>
 

@@ -45,10 +45,10 @@
       </el-table-column>
     </el-table>
     <el-drawer
-      title="EDIT"
-      :visible.sync="drawer_edit"
-      :direction="direction"
-      size="40%">
+        title="EDIT"
+        :visible.sync="drawer_edit"
+        :direction="direction"
+        size="40%">
       <el-form :model="model_edit" status-icon :rules="rules" ref="form" label-width="120px" class="demo-ruleForm">
         <el-form-item :label="$t('my_lang.name')" prop="name">
           <el-input v-model="model_edit.name"></el-input>
@@ -57,7 +57,7 @@
           <el-input type="password" v-model="model_edit.old_password" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="Mật Khẩu Mới" prop="password">
-            <el-input type="password" v-model="model_edit.new_password" autocomplete="off"></el-input>
+          <el-input type="password" v-model="model_edit.new_password" autocomplete="off"></el-input>
         </el-form-item>
         <el-form-item label="Xác nhận " prop="checkPass">
           <el-input type="password" v-model="model_edit.checkPass" autocomplete="off"></el-input>
@@ -186,12 +186,12 @@ export default {
 
       this.model_edit.password = this.model_edit.new_password;
       const res = await userResource.update(this.model_edit.id, this.model_edit);
-      // this.drawer_edit = false;
-      // this.fetchData();
-      // toast.fire({
-      //   icon: 'success',
-      //   title: 'User has been updated',
-      // })
+      this.drawer_edit = false;
+      this.fetchData();
+      toast.fire({
+        icon: 'success',
+        title: 'User has been updated',
+      })
     },
     async deleteData(id) {
       if (confirm("Do you really want to delete?")) {

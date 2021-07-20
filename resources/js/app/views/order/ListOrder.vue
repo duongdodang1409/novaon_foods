@@ -1,81 +1,81 @@
 <template>
   <div class="app-container">
-      <h3>Tổng Kết Thứ {{this.query.day + 1}} có: {{total}} đơn hàng</h3>
-      <el-table v-loading="listLoading" :data="statistical" element-loading-text="Loading" border fit highlight-current-row>
-        <el-table-column align="center"  label="Tên Món" prop="name">
-          <template slot-scope="scope">
-            <span>{{ scope.row.name }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" label="Số Lượng" prop="quantity">
-          <template slot-scope="scope">
-            <span>{{ scope.row.quantity }}</span>
-          </template>
-        </el-table-column>
-      </el-table>
-      <h3>Chi Tiết Đơn/Tuần</h3>
-      <el-table v-loading="listLoading" :data="customer" element-loading-text="Loading" border fit highlight-current-row>
-        <el-table-column align="center" :label="$t('my_lang.name')" prop="name">
-          <template slot-scope="scope">
-            <span>{{ scope.row.name }}</span>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" label="Đơn/Tuần" prop="quantity">
-          <template slot-scope="scope">
-            <span>{{scope.row.quantity}}</span>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" label="Số Tiền" prop="price">
-          <template slot-scope="scope">
-            <span>{{formatPrice(scope.row.price )}} VND</span>
-          </template>
-        </el-table-column>
-        <el-table-column align="center" label="Lấy cơm" prop="status">
-          <template slot-scope="scope" style="color:blue">
+    <h3>Tổng Kết Thứ {{this.query.day + 1}} có: {{total}} đơn hàng</h3>
+    <el-table v-loading="listLoading" :data="statistical" element-loading-text="Loading" border fit highlight-current-row>
+      <el-table-column align="center"  label="Tên Món" prop="name">
+        <template slot-scope="scope">
+          <span>{{ scope.row.name }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="Số Lượng" prop="quantity">
+        <template slot-scope="scope">
+          <span>{{ scope.row.quantity }}</span>
+        </template>
+      </el-table-column>
+    </el-table>
+    <h3>Chi Tiết Đơn/Tuần</h3>
+    <el-table v-loading="listLoading" :data="customer" element-loading-text="Loading" border fit highlight-current-row>
+      <el-table-column align="center" :label="$t('my_lang.name')" prop="name">
+        <template slot-scope="scope">
+          <span>{{ scope.row.name }}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="Đơn/Tuần" prop="quantity">
+        <template slot-scope="scope">
+          <span>{{scope.row.quantity}}</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="Số Tiền" prop="price">
+        <template slot-scope="scope">
+          <span>{{formatPrice(scope.row.price )}} VND</span>
+        </template>
+      </el-table-column>
+      <el-table-column align="center" label="Lấy cơm" prop="status">
+        <template slot-scope="scope" style="color:blue">
           <span v-if="scope.row.status == 1"  >
             <i class="el-icon-circle-check"></i>
                 Đã Lấy
           </span>
-            <span v-if="scope.row.status == 0" style="color: red">
+          <span v-if="scope.row.status == 0" style="color: red">
             <i class="el-icon-warning-outline"></i>
                 Chưa lấy
           </span>
-          </template>
-        </el-table-column>
+        </template>
+      </el-table-column>
 
-        <el-table-column align="center" label="Chi Tiết">
-          <template slot-scope="scope">
-            <el-button @click="drawer_edit = true; editData(scope.row.id)" type="primary"
-                       icon="el-icon-edit">
-            </el-button>
-            <el-button @click="viewData(scope.row.id)" type="primary"
-                       icon="el-icon-view">
-            </el-button>
+      <el-table-column align="center" label="Chi Tiết">
+        <template slot-scope="scope">
+          <el-button @click="drawer_edit = true; editData(scope.row.id)" type="primary"
+                     icon="el-icon-edit">
+          </el-button>
+          <el-button @click="viewData(scope.row.id)" type="primary"
+                     icon="el-icon-view">
+          </el-button>
 
-          </template>
-        </el-table-column>
+        </template>
+      </el-table-column>
 
-      </el-table>
+    </el-table>
 
-      <el-drawer
-          title="EDIT"
-          :visible.sync="drawer_edit"
-          :direction="direction"
-          size="40%">
-        <el-form :model="model_edit" status-icon :rules="rules" ref="form" label-width="120px" class="demo-ruleForm">
-          <el-form-item label="Tên" prop="name">
-            <el-input v-model="model_edit.name"></el-input>
-          </el-form-item>
-          <el-form-item label="Lấy cơm" >
-            <el-switch v-model="is_activated"></el-switch>
-          </el-form-item>
+    <el-drawer
+        title="EDIT"
+        :visible.sync="drawer_edit"
+        :direction="direction"
+        size="40%">
+      <el-form :model="model_edit" status-icon :rules="rules" ref="form" label-width="120px" class="demo-ruleForm">
+        <el-form-item label="Tên" prop="name">
+          <el-input v-model="model_edit.name"></el-input>
+        </el-form-item>
+        <el-form-item label="Lấy cơm" >
+          <el-switch v-model="is_activated"></el-switch>
+        </el-form-item>
 
-          <el-form-item>
-            <el-button type="primary" @click="validate('form')">Save</el-button>
-          </el-form-item>
-        </el-form>
+        <el-form-item>
+          <el-button type="primary" @click="validate('form')">Save</el-button>
+        </el-form-item>
+      </el-form>
 
-      </el-drawer>
+    </el-drawer>
 
 
 

@@ -24,6 +24,6 @@ class User extends Model
         'email',
         'password',
         'actived',
-
+        'role',
     ];
 }

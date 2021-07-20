@@ -151,7 +151,7 @@
                     <span>{{ formatPrice(scope.row.price) }} VND</span>
                   </template>
                 </el-table-column>
-
+                
               </el-table>
             </el-row>
           </el-main>
@@ -344,6 +344,7 @@ export default {
           this.don_hang.id_restaurant = this.cartItems[i].restaurant_id;
           this.don_hang.id_customer = this.customer_update.id;
           this.don_hang.id_menu = this.cartItems[i].id_menu;
+
           const res = await orderResource.store(this.don_hang);
           // let name = this.cartItems[i].name;
           // let price = this.cartItems[i].price;
@@ -394,11 +395,11 @@ export default {
       const customers = await customerResource.list(this.query);
 
       if (customers.data.items.length == 0) {
-        var pos = this.email.indexOf('@');
-        var newstr =   this.email.slice(pos);
-        if(newstr.includes("novaon")){
+        // var pos = this.email.indexOf('@');
+        // var newstr =   this.email.slice(pos);
+        // if(newstr.includes("novaon")){
         const res = await customerResource.store(this.customer);
-        }
+        // }
       }
       ;
       this.menu1 = foods1.data.items;
