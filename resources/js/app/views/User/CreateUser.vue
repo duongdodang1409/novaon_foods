@@ -47,6 +47,7 @@ export default {
         password: '',
         actived: '',
         checkPass: '',
+        role:'admin',
       },
       rules: {
         name: [
