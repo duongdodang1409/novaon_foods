@@ -20,7 +20,8 @@ class Customer extends Model
         'id',
         'name',
         'email',
-        'property'
+        'property',
+        'status'
     ];
 
 

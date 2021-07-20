@@ -16,12 +16,21 @@ class DatabaseSeeder extends Seeder
    */
   public function run()
   {
-    User::create([
-      'name' => 'Admin',
-      'email' => 'admin@test.com',
-      'password' => Hash::make('admin'),
-      'role' => 'admin'
-    ]);
+      User::create([
+          'name' => 'Admin',
+          'email' => 'admin@test.com',
+          'password' => Hash::make('admin'),
+      ]);
+      User::create([
+          'name' => 'Editor',
+          'email' => 'editor@test.com',
+          'password' => Hash::make('editor'),
+      ]);
+      User::create([
+          'name' => 'User',
+          'email' => 'user@test.com',
+          'password' => Hash::make('user'),
+      ]);
     Weekday::create([
       'weekday' => 'Thứ 2',
     ]);

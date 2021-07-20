@@ -196,6 +196,25 @@ export const constantRouterMap = [
             },
         ],
     },
+    {
+        path: '/admin',
+        component: Layout,
+        children: [
+            {
+                path: '',
+                name: 'ListAdmin',
+                component: require('@/views/User/ListUser').default,
+                meta: {title: 'Admin', icon: 'form'},
+            },
+            {
+                hidden: true,
+                path: '/create',
+                name: 'CreateAdmin',
+                component: require('@/views/User/CreateUser').default,
+                meta: {title: 'Create Admin', icon: 'form'},
+            },
+        ],
+    },
 
 
 ];

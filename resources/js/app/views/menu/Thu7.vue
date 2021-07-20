@@ -49,7 +49,7 @@ export default {
       array:[],
       list_foods:[],
       query: {
-        menu_id:7,
+        menu_id:6,
       },
       menu: {
         id:'',

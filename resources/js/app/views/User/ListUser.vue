@@ -1,18 +1,6 @@
 <template>
   <div class="app-container">
     <el-row class="toolbar" style="margin-bottom: 20px;">
-      <el-form :model="query">
-        <el-col :span="4" style="padding-right: 20px">
-          <el-form-item prop="keySearch">
-            <el-input placeholder="Search Slide by Title" clearable v-model="query.keySearch"/>
-          </el-form-item>
-        </el-col>
-        <el-col :span="8">
-          <el-form-item>
-            <el-button type="primary" @click="search(query.keySearch)">Search</el-button>
-          </el-form-item>
-        </el-col>
-      </el-form>
       <el-col :span="12">
         <el-button type="primary" @click="create()" icon="el-icon-plus"
                    plain size="small" style="float: right;">{{ $t('my_lang.create') }}
@@ -35,16 +23,7 @@
           <span>{{ scope.row.email }}</span>
         </template>
       </el-table-column>
-      <el-table-column align="center" :label="$t('my_lang.password')" prop="email">
-        <template slot-scope="scope">
-          <span>{{ scope.row.password }}</span>
-        </template>
-      </el-table-column>
-      <el-table-column align="center" :label="$t('my_lang.role')" prop="role">
-        <template slot-scope="scope">
-          <span>{{ scope.row.role }}</span>
-        </template>
-      </el-table-column>
+
       <el-table-column align="center" :label="$t('my_lang.actived')" prop="actived" width="95">
         <template slot-scope="scope">
                     <span v-if="scope.row.actived == 1">
@@ -69,41 +48,27 @@
       title="EDIT"
       :visible.sync="drawer_edit"
       :direction="direction"
-      size="100%">
+      size="40%">
       <el-form :model="model_edit" status-icon :rules="rules" ref="form" label-width="120px" class="demo-ruleForm">
         <el-form-item :label="$t('my_lang.name')" prop="name">
           <el-input v-model="model_edit.name"></el-input>
         </el-form-item>
-        <el-form-item :label="$t('my_lang.password')" prop="password">
-          <el-input type="password" v-model="model_edit.new_password" autocomplete="off"></el-input>
+        <el-form-item label="Mật Khẩu Cũ" prop="oldpass">
+          <el-input type="password" v-model="model_edit.old_password" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="Confirm" prop="checkPass">
+        <el-form-item label="Mật Khẩu Mới" prop="password">
+            <el-input type="password" v-model="model_edit.new_password" autocomplete="off"></el-input>
+        </el-form-item>
+        <el-form-item label="Xác nhận " prop="checkPass">
           <el-input type="password" v-model="model_edit.checkPass" autocomplete="off"></el-input>
         </el-form-item>
-        <el-form-item label="Role" prop="role">
-          <el-select v-model="model_edit.role" placeholder="Select">
-            <el-option
-              v-for="item in roles"
-              :key="item.value"
-              :label="item.label"
-              :value="item.value">
-            </el-option>
-          </el-select>
-        </el-form-item>
+
         <el-form-item>
           <el-button type="primary" @click="validate('form')">Submit</el-button>
           <el-button @click="resetForm('form')">Reset</el-button>
         </el-form-item>
       </el-form>
     </el-drawer>
-    <div class="pagination">
-      <el-pagination background
-                     @current-change="changePage"
-                     :current-page.sync="query.page"
-                     :page-size="query.limit"
-                     layout="prev, pager, next"
-                     :total="query.total"></el-pagination>
-    </div>
 
   </div>
 
@@ -127,28 +92,17 @@ export default {
       }
     };
     return {
-      roles: [
-        {
-          value: "admin",
-          label: "Admin",
-        },
-        {
-          value: "user",
-          label: "User",
-        }
-      ],
       drawer_edit: false,
       drawer_delete: false,
-      direction: 'ttb',
+      direction: 'rtl',
       list: null,
       listLoading: true,
       user: [{
         id: '',
         name: '',
         email: '',
-        password: '',
-        role: '',
         actived: '',
+        password:'',
       }],
       model_edit: {
         id: '',
@@ -156,8 +110,8 @@ export default {
         email: '',
         new_password: '',
         password: '',
-        role: '',
         actived: '',
+        old_password:'',
         checkPass: '',
       },
       query: {
@@ -166,20 +120,23 @@ export default {
         limit: 20,
         keySearch: '',
       },
-      rules: {
-        name: [
-          {required: true, message: this.$t('error_message.error_name'), trigger: 'blur'}
-        ],
-        email: [
-          {required: true, message: this.$t('error_message.error_email'), trigger: 'blur'}
-        ],
-        password: [
-          {required: true, message: this.$t('error_message.error_password'), trigger: 'blur'}
-        ],
-        checkPass: [
-          {validator: validatePass2, trigger: 'blur'}
-        ],
-      },
+      // rules: {
+      //   name: [
+      //     {required: true, message: this.$t('error_message.error_name'), trigger: 'blur'}
+      //   ],
+      //   email: [
+      //     {required: true, message: this.$t('error_message.error_email'), trigger: 'blur'}
+      //   ],
+      //   password: [
+      //     {required: true, message: this.$t('error_message.error_password'), trigger: 'blur'}
+      //   ],
+      //   oldpass: [
+      //     {required: true, message: "Bạn cần nhập mật khẩu cũ", trigger: 'blur'}
+      //   ],
+      //   checkPass: [
+      //     {validator: validatePass2, trigger: 'blur'}
+      //   ],
+      // },
 
     };
   },
@@ -213,34 +170,28 @@ export default {
       this.listLoading = false;
     },
     create() {
-      this.$router.push({path: '/users/create'});
+      this.$router.push({name: 'CreateAdmin'});
     },
     async editData(id) {
       const res = await userResource.get(id);
       this.model_edit = res.data.item;
-      // if (res.data.item.status == 1) {
-      //     this.model_edit.is_activated = true;
-      // } else {
-      //     this.model_edit.is_activated = false;
-      // }
+
       this.model_edit.id = res.data.item.id;
       this.model_edit.name = res.data.item.name;
-      this.model_edit.role = res.data.item.role;
     },
     async save() {
-      // if (this.model_edit.is_activated == true) {
-      //     this.model_edit.status = 1;
-      // } else {
-      //     this.model_edit.status = 0;
-      // }
+      console.log('old pass',this.model_edit.password);
+
+      console.log('old pass confirm',this.model_edit.old_password);
+
       this.model_edit.password = this.model_edit.new_password;
       const res = await userResource.update(this.model_edit.id, this.model_edit);
-      this.drawer_edit = false;
-      this.fetchData();
-      toast.fire({
-        icon: 'success',
-        title: 'User has been updated',
-      })
+      // this.drawer_edit = false;
+      // this.fetchData();
+      // toast.fire({
+      //   icon: 'success',
+      //   title: 'User has been updated',
+      // })
     },
     async deleteData(id) {
       if (confirm("Do you really want to delete?")) {

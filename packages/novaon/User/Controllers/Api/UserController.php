@@ -1,11 +1,5 @@
 <?php
-/**
- * Project: Caller_Core
- * Package: Novaon\User\Request\Tenant
- * Author: duong
- * Create time: 11:15 5/27/21
- * Copyright (c) 2021 NOVAON.
- **/
+
 
 
 namespace Novaon\User\Controllers\Api;
@@ -151,7 +145,6 @@ class UserController extends Controller
             'name' => $request['name'],
             'email' => $request['email'],
             'password' => Hash::make($request['password']),
-            'role' => $request['role'],
         ]);
         return ResponseBuilder::success($user, ApiCode::SUCCESS);
     }
@@ -189,13 +182,17 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        $data = [
-            'name' => $request['name'] ?? $user['name'],
-            'password' => $request['password'] ? Hash::make($request['password']) : $user['password'],
-            'role' => $request['role'] ? $request['role'] : $user['role'],
-        ];
-        $user->update($data);
-        return ResponseBuilder::success($user, ApiCode::SUCCESS);
+        $idAdmin = $request -> id;
+        $detailAdmin = User::find($idAdmin);
+        if (Hash::check($request->old_password, $detailAdmin->password)) {
+            $data = [
+                'name' => $request['name'] ?? $user['name'],
+                'password' => $request['password'] ? Hash::make($request['password']) : $user['password'],
+            ];
+            $user->update($data);
+            return ResponseBuilder::success($user, ApiCode::SUCCESS);
+
+        }
     }
 
     /**

@@ -14,16 +14,7 @@
       <el-form-item label="Confirm" prop="checkPass">
         <el-input type="password" v-model="user.checkPass" autocomplete="off"></el-input>
       </el-form-item>
-      <el-form-item label="Role" prop="role">
-        <el-select v-model="user.role" placeholder="Select">
-          <el-option
-            v-for="item in roles"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value">
-          </el-option>
-        </el-select>
-      </el-form-item>
+
       <el-form-item>
         <el-button type="primary" @click="validate('form')">Submit</el-button>
         <el-button @click="resetForm('form')">Reset</el-button>
@@ -50,22 +41,12 @@ export default {
       }
     };
     return {
-      roles: [
-        {
-          value: "admin",
-          label: "Admin",
-        },
-        {
-          value: "user",
-          label: "User",
-        }
-      ],
+
       user: {
         id: '',
         name: '',
         email: '',
         password: '',
-        role: "user",
         actived: '',
         checkPass: '',
       },
@@ -98,7 +79,7 @@ export default {
     },
     async save() {
       const res = await userResource.store(this.user);
-      this.$router.push({path: '/users'})
+      this.$router.push({name: 'ListAdmin'})
       toast.fire({
         icon: 'success',
         title: 'User has been created',

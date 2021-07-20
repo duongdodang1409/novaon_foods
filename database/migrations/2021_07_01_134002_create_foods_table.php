@@ -17,7 +17,7 @@ class CreateFoodsTable extends Migration
           $table->increments('id');
             $table->string('name','255');
             $table->integer('restaurant_id');
-            $table->string('description','255');
+            $table->string('description','255')->nullable();
             $table->string('image','255');
             $table->integer('price');
             $table->timestamps();
