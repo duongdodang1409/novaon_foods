@@ -118,25 +118,8 @@ export default {
         total: 0,
         page: 1,
         limit: 20,
-        keySearch: '',
       },
-      // rules: {
-      //   name: [
-      //     {required: true, message: this.$t('error_message.error_name'), trigger: 'blur'}
-      //   ],
-      //   email: [
-      //     {required: true, message: this.$t('error_message.error_email'), trigger: 'blur'}
-      //   ],
-      //   password: [
-      //     {required: true, message: this.$t('error_message.error_password'), trigger: 'blur'}
-      //   ],
-      //   oldpass: [
-      //     {required: true, message: "Bạn cần nhập mật khẩu cũ", trigger: 'blur'}
-      //   ],
-      //   checkPass: [
-      //     {validator: validatePass2, trigger: 'blur'}
-      //   ],
-      // },
+
 
     };
   },
@@ -145,22 +128,14 @@ export default {
     if (this.drawer_edit == true) this.editData();
   },
   methods: {
-    changePage(page) {
-      this.query.page = page;
-      console.log(page);
-      this.fetchData();
-    },
+
     validate(formName) {
       this.$refs[formName].validate(valid => {
         console.log(valid)
         if (valid) this.save()
       });
     },
-    async search(keySearch) {
-      this.query.keySearch = keySearch;
-      console.log(this.query.keySearch);
-      this.fetchData();
-    },
+
     async fetchData() {
       this.listLoading = true;
       const res = await userResource.list(this.query);
@@ -180,9 +155,6 @@ export default {
       this.model_edit.name = res.data.item.name;
     },
     async save() {
-      console.log('old pass',this.model_edit.password);
-
-      console.log('old pass confirm',this.model_edit.old_password);
 
       this.model_edit.password = this.model_edit.new_password;
       const res = await userResource.update(this.model_edit.id, this.model_edit);
